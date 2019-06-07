@@ -12,11 +12,11 @@ class SearchComponent extends React.Component{
         this.inputChanged = this.inputChanged.bind(this);
         this.buttonClicked = this.buttonClicked.bind(this);
     }
-    
-    componentDidMount(){
-        store.dispatch({
-           type : "CLEAR_VIDEOS"
-        })
+ 
+    componentWillUnmount(){
+        this.props.dispatch({
+            type : "CLEAR_VIDEOS"
+        });
     }
 
     inputChanged(event) {

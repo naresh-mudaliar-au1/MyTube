@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {store, stateMapper} from '../store/store.js';
+import Comments from './comments.js'
 
 class videoPlayerComponent extends React.Component{
 
@@ -42,29 +43,7 @@ class videoPlayerComponent extends React.Component{
         })
     }
 
-    //  kformat(num){
-    //     if(num > 999){
-    //       num=num.toString()
-    //       return (num[0]+"k");
-    //     }
-    //   }
-
     renderDescription(){
-    //     if(!this.props.currentPlayerVideo.snippet){
-    //         return null
-    //     }else{
-    //         let description = this.props.currentPlayerVideo.snippet.description
-    //        if(description.length > 100){
-    //           return(
-    //             <div>
-    //             `${description.slice(0, 500)}`
-    //             <button className="btn btn-secondary btn-sm">Read More</button>
-    //             </div>
-    //           );
-    //        }else{
-    //            return description;
-    //        }
-    //     }
     if(this.state.showMoreClicked){
         return(
             <p>
@@ -97,6 +76,8 @@ class videoPlayerComponent extends React.Component{
               <p className="strong">{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.dislikeCount}</p>
               <hr/>
               Description : {this.renderDescription()}
+              <hr/>
+              <Comments videoId={this.props.match.params.videoId}/>
          </div>
         )
     }

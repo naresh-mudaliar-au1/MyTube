@@ -59,4 +59,22 @@ function fetchOneVideo (store, action){
       })
 }
 
-export {fetchVideos, fetchOneVideo}
+function fetchVideoComments (store, action){
+    let url = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies
+    &videoId=${action.videoId}&key=${MYTUBE_CONFIG.YOUTUBE_API_KEY}`
+
+    fetch(url)
+      .then(function(response){
+          return response.json();
+      })
+      .then(function(data){
+          store.dispatch({
+              type:"VIDEO_COMMENTS_LOADED",
+              comments : data.items
+          })
+      })
+      .catch (function(err){
+          console.log("fetch error", err)
+      })
+}
+export {fetchVideos, fetchOneVideo, fetchVideoComments}

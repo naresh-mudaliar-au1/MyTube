@@ -17,7 +17,7 @@ class CommentsComponent extends React.Component {
             <div className="panel-body">
                 {this.props.playerComments.map(c=> {
                     return <div key={c.etag}>
-                        <img src={c.snippet.topLevelComment.snippet.authorProfileImageUrl}></img>{" "}
+                        <img src={c.snippet.topLevelComment.snippet.authorProfileImageUrl}alt={""}></img>{" "}
                         <strong>{c.snippet.topLevelComment.snippet.authorDisplayName}</strong>
                         <br/>
                         <br/>

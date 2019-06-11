@@ -11,7 +11,7 @@ class MenuComponent extends React.Component{
                <br/>
                  <Link to="" className="list-group-item list-group-item-action active bg-dark">Menu</Link>
                  <Link to="/" className="list-group-item list-group-item-action">Trending</Link>
-                 <Link to="Search" className="list-group-item list-group-item-action">Search</Link>
+                 <Link to="/Search" className="list-group-item list-group-item-action">Search</Link>
               </div>
         )
     }

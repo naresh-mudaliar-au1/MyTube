@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {store, stateMapper} from '../store/store.js';
+import {stateMapper} from '../store/store.js';
 import Comments from './comments.js'
 
 class videoPlayerComponent extends React.Component{
@@ -63,22 +63,26 @@ class videoPlayerComponent extends React.Component{
    
     render(){
         return(
-          <div className="col-md-12">
-              <h2 className="strong">{this.renderTitle()}</h2>
-              <hr/>
-              <br/>
-               <div className="embed-responsive embed-responsive-16by9" >
-                  <iframe title = "player" width="560" height="315" src={`https://www.youtube.com/embed/${this.props.match.params.videoId}`} frameBorder="0" allow="accelerometer;
-                   autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <div>
+              <div className="col-md-12">
+                    <h2 className="strong">{this.renderTitle()}</h2>
+                    <hr/>
+                  <br/>                  
+                  <div className="embed-responsive embed-responsive-16by9" >
+                        <iframe title = "player" width="560" height="315" src={`https://www.youtube.com/embed/${this.props.match.params.videoId}`} frameBorder="0" allow="accelerometer;
+                        autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                 </div>
+             </div>
+             <div className="col-md-12"> 
+                   <i className="material-icons" style={{fontSize : 25}}>visibility</i>{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.viewCount}
+                   <i className="material-icons" style={{fontSize : 25}}>thumb_up</i>{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.likeCount}
+                   <i className="material-icons" style={{fontSize : 25}}>thumb_down</i>{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.dislikeCount}
+                  <hr/>
+                      Description : {this.renderDescription()}
+                  <hr/>
+                   <Comments videoId={this.props.match.params.videoId}/>
               </div>
-              <h2 className="strong">{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.viewCount}</h2>
-              <p className="strong">{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.likeCount}</p>
-              <p className="strong">{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.dislikeCount}</p>
-              <hr/>
-              Description : {this.renderDescription()}
-              <hr/>
-              <Comments videoId={this.props.match.params.videoId}/>
-         </div>
+          </div>
         )
     }
 }

@@ -8,7 +8,7 @@ class SearchComponent extends React.Component{
     
     constructor(props) {
         super(props);
-        
+         
         this.inputChanged = this.inputChanged.bind(this);
         this.buttonClicked = this.buttonClicked.bind(this);
     }
@@ -32,28 +32,20 @@ class SearchComponent extends React.Component{
             query: this.state.query
         })
     }
-
-
-
     render(){
         return(
-
-          <div className="container">
-                <div className = "row">
-                    <div className = "col-md-9">
-                        
-                      <div className="btn-group container-fluid">
-                            <br/>
-                            <input onChange={this.inputChanged} className="form-control form-control-lg" type="text" placeholder="Search MyTube"></input>
-                            <button onClick={this.buttonClicked} type="button" className="btn btn-secondary"><i className="material-icons" style={{fontSize : 25}}>search</i></button>
-                            <hr/>
-                     </div>
-                     <hr/>
-                     <Videos/>
+          <div>
+              <div className = "column">
+                  <div className="btn-group container-fluid ">
+                        <br/>
+                        <input onChange={this.inputChanged} className="form-control form-control-md" type="text" placeholder="Search MyTube"></input>
+                        <button onClick={this.buttonClicked} type="button" className="btn btn-secondary btn-md"><i className="material-icons" style={{fontSize : 18}}>search</i></button>
+                        <br/>
                   </div>
-              </div>
+                  <hr/>
+                  <Videos/>
+             </div>
          </div>
-
         )
     }
 }

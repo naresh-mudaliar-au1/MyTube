@@ -4,6 +4,9 @@ import MenuComponent from './menu.js'
 import Search from './search.js'
 import Trending from './trending.js'
 import videoPlayer from './videoPlayer.js'
+import Profile from './profile.js'
+import createPlaylist from './createPlaylist.js'
+import logout from './logout.js'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {store} from '../store/store.js'
 //import videoReducer from '../store/reducers/videosReducer.js';
@@ -11,23 +14,26 @@ import {store} from '../store/store.js'
 class App extends React.Component{
     render(){
         return(
-      <Provider store={store}>
          <Router>
-             <div className="container">
-                  <div className="row">
-                      <div className="col-md-3">
-                         <MenuComponent />
+             <Provider store={store}>
+                 <div className="container">
+                     <div className="row">
+                         <div className="col-md-3">
+                               <MenuComponent />
+                          </div>
+                          <div className="container-fluid col-md-9">
+                              <br/>
+                              <Route exact path="/app" component={Trending}/>
+                              <Route path="/app/search" component = {Search}/>
+                              <Route path="/app/profile" component = {Profile}/>
+                              <Route path="/app/logout" component = {logout}/>
+                              <Route path="/app/playlists/create" component = {createPlaylist}/>
+                              <Route path="/app/player/:videoId" component = {videoPlayer}/>
+                          </div>  
                       </div>
-                       <div className="col-md-9">
-                          <br/>
-                           <Route exact path="/" component={Trending}/>
-                           <Route path="/search" component = {Search}/>
-                           <Route path="/player/:videoId" component = {videoPlayer}/>
-                       </div>  
-                  </div>
-             </div>
+                 </div>
+              </Provider>
          </Router>
-      </Provider>
         );
     }
 }

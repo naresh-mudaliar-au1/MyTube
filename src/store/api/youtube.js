@@ -1,5 +1,16 @@
 import MYTUBE_CONFIG from "../config.js"
+import { useReducer } from "react";
 //import store from "../store.js" 
+
+function getUserToken (){
+    let user = localStorage.getItem("user");
+
+    if(!user) {return null; }
+
+    user = JSON.parse(user);
+
+    return user.token;
+}
 
 function fetchVideos (store, action){
     
@@ -77,4 +88,27 @@ function fetchVideoComments (store, action){
           console.log("fetch error", err)
       })
 }
-export {fetchVideos, fetchOneVideo, fetchVideoComments}
+
+function fetchPlaylists (store, action){
+    let url = "https://www.googleapis.com/youtube/v3/playlists?part=snippet&mine=true&maxResult=10";
+
+    fetch(url, {
+       "headers": {
+           "Authorization" : `Bearer ${getUserToken()}`
+       } 
+    })
+      .then(function(response){
+          console.log(response)
+          return response.json();
+      })
+      .then(function(data){
+          store.dispatch({
+              type:"PLAYLIST_LOADED",
+              playlists : data.items
+          })
+      })
+      .catch (function(err){
+          console.log("fetch error", err)
+      })
+}
+export {fetchVideos, fetchOneVideo, fetchVideoComments, fetchPlaylists}

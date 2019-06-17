@@ -5,7 +5,6 @@ function playerCommentsReducer (playerComments=[], action){
    
     if(action.type == "FETCH_VIDEO_COMMENTS" ){
         fetchVideoComments(store, action)
-        
     }
  
     if(action.type == "VIDEO_COMMENTS_LOADED"){

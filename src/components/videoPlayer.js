@@ -73,12 +73,16 @@ class videoPlayerComponent extends React.Component{
                         autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                  </div>
              </div>
-             <div className="col-md-12"> 
-                   <i className="material-icons" style={{fontSize : 25}}>visibility</i>{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.viewCount}
-                   <i className="material-icons" style={{fontSize : 25}}>thumb_up</i>{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.likeCount}
-                   <i className="material-icons" style={{fontSize : 25}}>thumb_down</i>{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.dislikeCount}
+             <div className=""> 
+                 <div className ="col-sm-4">
+                      <i className="material-icons" style={{fontSize : 25}}>visibility</i>{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.viewCount}
+                      <i className="material-icons" style={{fontSize : 25}}>thumb_up</i>{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.likeCount}
+                      <i className="material-icons" style={{fontSize : 25}}>thumb_down</i>{this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.dislikeCount}
+                 </div>
                   <hr/>
                       Description : {this.renderDescription()}
+                  <hr/>
+                  <h2>Comments : {this.props.currentPlayerVideo.snippet && this.props.currentPlayerVideo.statistics.commentCount}</h2>
                   <hr/>
                    <Comments videoId={this.props.match.params.videoId}/>
               </div>

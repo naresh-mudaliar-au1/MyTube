@@ -22,7 +22,7 @@ class HOME extends React.Component{
       <Router>
           <div>
              <Route exact path="/app" component={App}/>
-             <Route exact path="/login" component={Login}/>
+             <Route path="/login" component={Login}/>
              {this.redirect()}
            </div>
       </Router>

@@ -1,6 +1,9 @@
 import React from 'react';
-
-class createPlaylist extends React.Component{
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom'
+import {stateMapper} from '../store/store.js'
+ 
+class createPlaylistComponent extends React.Component{
     
     constructor(props){
         super(props);
@@ -14,11 +17,11 @@ class createPlaylist extends React.Component{
                 isFormValid : true,
                 isNameValid : true,
                 isDescriptionValid : true,
-                // isTypeValid : true
             }
         };
         this.onChange= this.onChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.validateForm = this.validateForm.bind(this);
     }
 
     onChange(event){
@@ -43,7 +46,7 @@ class createPlaylist extends React.Component{
 
         if(!this.state.description){
             newFormState.isDescriptionValid = false;
-            newFormState.isDescriptionValid = false;
+            newFormState.isFormValid = false;
         }
 
         this.setState({
@@ -56,14 +59,27 @@ class createPlaylist extends React.Component{
     handleSubmit(event){
         event.preventDefault();
         
-        if(this.validateForm()){
-            console.log("form is good");
-        }else{
-            console.log("form is having issue")
-        }
+        if(!this.validateForm()){ return; }
+
+        this.props.dispatch({
+            type: "CREATE_PLAYLIST",
+            formData: this.state
+        })
+    }
+
+    componentWillUnmount(){
+        this.props.dispatch({
+            type:"CLEAR_PLAYLIST_CREATED"
+        })
     }
 
     render(){
+
+        if(this.props.newPlaylists.id) {
+            return <Redirect to={`/app/playlist/${this.props.newPlaylists.id}`}
+             />;
+        }
+
         return(
          <div>
              <h2>Create New Playlist</h2>
@@ -106,5 +122,7 @@ class createPlaylist extends React.Component{
         )
     }
 }
+
+let createPlaylist = connect(stateMapper)(createPlaylistComponent)
 
 export default createPlaylist;

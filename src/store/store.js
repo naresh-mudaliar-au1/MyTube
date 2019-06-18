@@ -4,7 +4,8 @@ import videosReducer from './reducers/videosReducer.js';
 import isVideosLoadingReducer from './reducers/isVideosLoading.js';
 import currentPlayerVideoReducer from './reducers/currentPlayerVideoReducer.js';
 import playerCommentsReducer from './reducers/playerComments.js';
-import playlistsReducer from './reducers/playlistreducer.js'
+import playlistsReducer from './reducers/playlistreducer.js';
+import newPlaylistReducer from './reducers/newPlayListReducer.js';
 
 
 let reducer = combineReducers({
@@ -12,7 +13,8 @@ let reducer = combineReducers({
     isVideosLoading : isVideosLoadingReducer,
     currentPlayerVideo: currentPlayerVideoReducer,
     playerComments : playerCommentsReducer,
-    playlist: playlistsReducer
+    playlists: playlistsReducer,
+    newPlaylists : newPlaylistReducer
 });
 
 let store = createStore (reducer);
